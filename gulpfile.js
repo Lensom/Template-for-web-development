@@ -22,14 +22,14 @@ var gulp         = require('gulp'),
 
 // Пользовательские скрипты проекта
 
-gulp.task('js', function() {
+gulp.task('js', gulp.series( function(){
 	return gulp.src([
 		'project/js/common.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.js'))
 	.pipe(gulp.dest('project/js'))
 	.pipe(browserSync.reload({ stream: true }));
-});
+}));
 
 
 gulp.task('styl', () => {
@@ -41,13 +41,15 @@ gulp.task('styl', () => {
 });
 
 
-gulp.task('watch', ['styl', 'js', 'browser-sync'], function () {
+gulp.task('watch',gulp.series( 'styl', 'js', 'browser-sync'), function () {
 	gulp.watch('project/stylus/**/*.styl', ['styl']);
 	gulp.watch(['libs/**/*.js', 'project/js/common.js'], ['js']);
 	gulp.watch('project/*.html', browserSync.reload);
 });
 
-gulp.task('build', ['removedist', 'styl', 'js'], function () {
+gulp.task('removedist', function() { return del.sync('dist'); });
+
+gulp.task('build', gulp.series('removedist', 'styl', 'js'), function () {
 
 	var buildFiles = gulp.src([
 		'project/*.html',
@@ -73,7 +75,6 @@ gulp.task('build', ['removedist', 'styl', 'js'], function () {
 });
 
 
-gulp.task('removedist', function() { return del.sync('dist'); });
 gulp.task('clearcache', function () { return cache.clearAll(); });
 
-gulp.task('default', ['watch']);
+gulp.task('default', gulp.series('watch'));

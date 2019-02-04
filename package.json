@@ -1,6 +1,6 @@
 {
   "name": "ay",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Template for website development",
   "main": "index.js",
   "scripts": {
