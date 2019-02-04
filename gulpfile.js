@@ -20,11 +20,11 @@ var gulp         = require('gulp'),
 		});
 	});
 
-// Пользовательские скрипты проекта
+// User scripts
 
 gulp.task('js', gulp.series( function(){
 	return gulp.src([
-		'project/js/common.js', // Всегда в конце
+		'project/js/common.js', // Always at the end
 		])
 	.pipe(concat('scripts.js'))
 	.pipe(gulp.dest('project/js'))
@@ -33,15 +33,15 @@ gulp.task('js', gulp.series( function(){
 
 
 gulp.task('styl', () => {
-	return gulp.src(['project/stylus/**/*.styl']) // Берет файлы стилей
-		.pipe(stylus({ 'include css': true, })) // Производит все импорты создавая только один файл в конце
+	return gulp.src(['project/stylus/**/*.styl']) // Take all style files
+		.pipe(stylus({ 'include css': true, })) // Take all import css and create 1 file
 		.pipe(autoprefixer(['last 15 versions']))
 		.pipe(gulp.dest(`project/css`))
 		.pipe(browserSync.stream())
 });
 
 
-gulp.task('watch',gulp.series( 'styl', 'js', 'browser-sync'), function () {
+gulp.task('watch', gulp.series( 'styl', 'js', 'browser-sync'), function () {
 	gulp.watch('project/stylus/**/*.styl', ['styl']);
 	gulp.watch(['libs/**/*.js', 'project/js/common.js'], ['js']);
 	gulp.watch('project/*.html', browserSync.reload);
