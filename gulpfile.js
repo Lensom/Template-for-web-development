@@ -9,18 +9,6 @@ var	notify         = require('gulp-notify');
 var	plumber				 = require('gulp-plumber');
 var	stylus 				 = require('gulp-stylus');
  
-	
-	gulp.task('browser-sync', function() {
-		browserSync({
-			server: {
-				baseDir: 'project'
-			},
-			notify: false,
-			// tunnel: true,
-			// tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
-		});
-	});
-
 	gulp.task('browser-sync',()=>{
 		browserSync.init({
 				server: {
