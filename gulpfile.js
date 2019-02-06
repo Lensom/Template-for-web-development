@@ -26,7 +26,7 @@ gulp.task('js', gulp.series( function(){
 	return gulp.src([
 		'project/js/common.js', // Always at the end
 		])
-	// .pipe(plumber())
+	.pipe(plumber())
 	.pipe(concat('scripts.js'))
 	.pipe(gulp.dest('project/js'))
 	.pipe(browserSync.reload({ stream: true }));
@@ -37,7 +37,7 @@ gulp.task('styl', () => {
 	return gulp.src(['project/stylus/**/*.styl']) // Take all style files
 		.pipe(plumber())
 		.pipe(stylus({ 'include css': true, })) // Take all import css and create 1 file
-		.pipe(autoprefixer(['last 15 versions']))
+		.pipe(autoprefixer(['last 3 versions']))
 		.pipe(gulp.dest(`project/css`))
 		.pipe(browserSync.reload({ stream: true }));
 });
