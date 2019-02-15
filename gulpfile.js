@@ -1,13 +1,14 @@
 var gulp         = require('gulp');
-// var sass         = require('gulp-sass');
+// var sass         = require('gulp-sass');  // Optional, if use SASS
 var	browserSync    = require('browser-sync');
 var	concat         = require('gulp-concat');
 var	del            = require('del');
 var	cache          = require('gulp-cache');
 var	autoprefixer   = require('gulp-autoprefixer');
-var	notify         = require('gulp-notify');
 var	plumber				 = require('gulp-plumber');
 var	stylus 				 = require('gulp-stylus');
+var cleanCSS       = require('gulp-clean-css');
+var uglify         = require('gulp-uglify');
  
 	gulp.task('browser-sync',()=>{
 		browserSync.init({
@@ -15,8 +16,7 @@ var	stylus 				 = require('gulp-stylus');
 						baseDir: `project`,
 				},          
 				notify: false,
-				open: true,
-				cache: false
+				open: true
 		});
 	});
 
@@ -44,7 +44,6 @@ gulp.task('styl', () => {
 
 gulp.task('html', gulp.series( function(){
 	return gulp.src(['project/*.html'])
-	.pipe(plumber())
 	.pipe(browserSync.reload({ stream: true }));
 }));
 
@@ -64,21 +63,19 @@ gulp.task('build', gulp.series('removedist', 'styl', 'js', function (cb) {
 		// 'project/.htaccess',
 		]).pipe(gulp.dest('dist'));
 
-	var buildCss = gulp.src([
-		'project/css/main.css',
-		]).pipe(gulp.dest('dist/css'));
+	var buildCss = gulp.src(['project/css/main.css',])
+		.pipe(cleanCSS())  // Optional: min css
+		.pipe(gulp.dest('dist/css'));
 
-	var buildJs = gulp.src([
-		'project/js/scripts.js',
-		]).pipe(gulp.dest('dist/js'));
+	var buildJs = gulp.src(['project/js/scripts.js',])
+		.pipe(uglify()) // Optional: min js
+		.pipe(gulp.dest('dist/js'));
 
-	var buildFonts = gulp.src([
-		'project/fonts/**/*',
-		]).pipe(gulp.dest('dist/fonts'));
+	var buildFonts = gulp.src(['project/fonts/**/*',])
+		.pipe(gulp.dest('dist/fonts'));
 
-	var buildImg = gulp.src([
-		'project/img/**/*',
-	]).pipe(gulp.dest('dist/img'));
+	var buildImg = gulp.src(['project/img/**/*',])
+		.pipe(gulp.dest('dist/img'));
 	
 	cb();
 	
