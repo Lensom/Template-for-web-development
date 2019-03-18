@@ -58,23 +58,23 @@ gulp.task('removebuild', function(cb) { del.sync('build'); cb(); });
 
 gulp.task('build', gulp.series('removebuild', 'styl', 'js', function (cb) {
 
-	var buildFiles = gulp.src([
+	gulp.src([
 		'project/*.html',
 		// 'project/.htaccess',
 		]).pipe(gulp.dest('build'));
 
-	var buildCss = gulp.src(['project/css/main.css',])
+	gulp.src(['project/css/main.css',])
 		.pipe(cleanCSS())  // Optional: min css
 		.pipe(gulp.dest('build/css'));
 
-	var buildJs = gulp.src(['project/js/scripts.js',])
+	gulp.src(['project/js/scripts.js',])
 		.pipe(uglify()) // Optional: min js
 		.pipe(gulp.dest('build/js'));
 
-	var buildFonts = gulp.src(['project/fonts/**/*',])
+	gulp.src(['project/fonts/**/*',])
 		.pipe(gulp.dest('build/fonts'));
 
-	var buildImg = gulp.src(['project/img/**/*',])
+	gulp.src(['project/img/**/*',])
 		.pipe(gulp.dest('build/img'));
 	
 	cb();
