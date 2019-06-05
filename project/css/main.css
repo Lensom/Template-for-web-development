@@ -78,6 +78,5 @@ p {
 }
 a {
   -webkit-transition: 0.2s color ease-in;
-  -o-transition: 0.2s color ease-in;
   transition: 0.2s color ease-in;
 }
