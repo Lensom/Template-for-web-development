@@ -8,6 +8,7 @@ var plumber = require('gulp-plumber');
 var stylus = require('gulp-stylus');
 var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
+var imagemin = require('gulp-tinypng');
 
 gulp.task('browser-sync', () => {
 	browserSync.init({
@@ -23,9 +24,9 @@ gulp.task('browser-sync', () => {
 
 gulp.task('js', gulp.series(function () {
 	return gulp.src([
-			'project/js/jquery-3.3.1.min.js', // Add optional scripts
-			'project/js/common.js', // Always at the end
-		])
+		'project/libs/jquery-3.3.1.min.js', // Add custom js
+		'project/js/common.js', // Always at the end
+	])
 		.pipe(plumber())
 		.pipe(concat('scripts.js'))
 		.pipe(gulp.dest('project/js'))
@@ -55,10 +56,19 @@ gulp.task('html', gulp.series(function () {
 		}));
 }));
 
+gulp.task('minimg', gulp.series(function () {
+	return gulp.src([
+		'project/img/**/*.png',
+		'project/img/**/*.jpg',
+		'project/img/**/*.jpeg',
+	])
+		.pipe(imagemin('f6wblB8l0yGZr5Z6PFy0CrDFGQX0PTN4'))
+		.pipe(gulp.dest('project/img'));
+}));
 
 gulp.task('watch', function () {
 	gulp.watch('project/stylus/**/*.styl', gulp.series('styl'));
-	gulp.watch(['libs/**/*.js', 'project/js/common.js'], gulp.series('js'));
+	gulp.watch(['project/js/common.js'], gulp.series('js'));
 	gulp.watch('project/*.html', gulp.series('html'));
 });
 
@@ -67,26 +77,26 @@ gulp.task('removebuild', function (cb) {
 	cb();
 });
 
-gulp.task('build', gulp.series('removebuild', 'styl', 'js', function (cb) {
+gulp.task('build', gulp.series('removebuild', 'minimg', 'styl', 'js', function (cb) {
 
 	gulp.src([
 		'project/*.html',
 		// 'project/.htaccess',
 	]).pipe(gulp.dest('build'));
 
-	gulp.src(['project/css/*.css','project/css/main.css'
+	gulp.src(['project/css/*.css', 'project/css/main.css'
 	])
 		.pipe(cleanCSS()) // Optional: min css
 		.pipe(gulp.dest('build/css'));
 
-	gulp.src(['project/js/scripts.js', ])
+	gulp.src(['project/js/scripts.js',])
 		.pipe(uglify()) // Optional: min js
 		.pipe(gulp.dest('build/js'));
 
-	gulp.src(['project/fonts/**/*', ])
+	gulp.src(['project/fonts/**/*',])
 		.pipe(gulp.dest('build/fonts'));
 
-	gulp.src(['project/img/**/*', ])
+	gulp.src(['project/img/**/*',])
 		.pipe(gulp.dest('build/img'));
 
 	cb();
