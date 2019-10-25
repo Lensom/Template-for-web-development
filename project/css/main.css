@@ -3,16 +3,16 @@
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url("../fonts/RobotoRegular/RobotoRegular.eot");
-  src: url("../fonts/RobotoRegular/RobotoRegular.eot?#iefix") format('embedded-opentype'), url("../fonts/RobotoRegular/RobotoRegular.woff") format('woff'), url("../fonts/RobotoRegular/RobotoRegular.ttf") format('truetype');
+  src: url("../fonts/Roboto/RobotoRegular.eot");
+  src: url("../fonts/Roboto/RobotoRegular.eot?#iefix") format('embedded-opentype'), url("../fonts/Roboto/RobotoRegular.woff") format('woff'), url("../fonts/Roboto/RobotoRegular.ttf") format('truetype');
 }
 @font-face {
   font-family: "Roboto";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url("../fonts/RobotoBold/RobotoBold.eot");
-  src: url("../fonts/RobotoBold/RobotoBold.eot?#iefix") format('embedded-opentype'), url("../fonts/RobotoBold/RobotoBold.woff") format('woff'), url("../fonts/RobotoBold/RobotoBold.ttf") format('truetype');
+  src: url("../fonts/Roboto/RobotoBold.eot");
+  src: url("../fonts/Roboto/RobotoBold.eot?#iefix") format('embedded-opentype'), url("../fonts/Roboto/RobotoBold.woff") format('woff'), url("../fonts/Roboto/RobotoBold.ttf") format('truetype');
 }
 * {
   -webkit-box-sizing: border-box;
@@ -23,14 +23,6 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-body input:focus:required:invalid,
-body textarea:focus:required:invalid {
-  color: #f00;
-}
-body input:required:valid,
-body textarea:required:valid {
-  color: #666;
-}
 html,
 body {
   height: 100%;
@@ -40,7 +32,7 @@ body {
   min-width: 320px;
   position: relative;
   line-height: 1.65;
-  font-family: "Roboto", sans-serif;
+  font-family: 400;
   overflow-x: hidden;
   margin: 0;
 }
