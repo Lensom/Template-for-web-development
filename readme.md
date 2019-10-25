@@ -3,7 +3,7 @@
 
 <ul>
     <li>npm i</li>
-    <li>ncu -u - for update your template</li>
+    <li>npm update - for update your template</li>
     <li>gulp</li>
 </ul>
 
@@ -13,7 +13,7 @@
 <h2>Запуск шаблона:</h2>
 <ul>
     <li>npm i</li>
-    <li>ncu -u - for update your template</li>
+    <li>npm update - for update your template</li>
     <li>gulp</li>
 </ul>
 
