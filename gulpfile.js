@@ -1,14 +1,14 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var concat = require('gulp-concat');
-var del = require('del');
-var cache = require('gulp-cache');
-var autoprefixer = require('gulp-autoprefixer');
-var plumber = require('gulp-plumber');
-var stylus = require('gulp-stylus');
-var cleanCSS = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
-var imagemin = require('gulp-tinypng');
+let gulp = require('gulp');
+let browserSync = require('browser-sync');
+let concat = require('gulp-concat');
+let del = require('del');
+let cache = require('gulp-cache');
+let autoprefixer = require('gulp-autoprefixer');
+let plumber = require('gulp-plumber');
+let stylus = require('gulp-stylus');
+let cleanCSS = require('gulp-clean-css');
+let uglify = require('gulp-uglify-es').default;
+let imagemin = require('gulp-tinypng');
 
 gulp.task('browser-sync', () => {
 	browserSync.init({

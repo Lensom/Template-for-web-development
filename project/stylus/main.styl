@@ -1,49 +1,8 @@
 @import "_font-face.styl"
 @import "_libs.styl"
 @import "_vars.styl"
-
-// all
-*
-	box-sizing border-box
-	&:before, &:after
-		box-sizing border-box
-
-html, body
-	height 100%
-
-body
-	font-size 16px
-	min-width 320px
-	position relative
-	line-height 1.65
-	font-family $default-font
-	overflow-x hidden
-	margin 0
-
-img
-	display block
-	max-width 100%
-	height auto
-
-ul 
-	margin 0
-	padding 0
-
-li 
-	list-style-type none
-
-h1,h2,h3,
-h4,h5,h6 
-	font-weight 400
-	margin 0
-	padding 0
-	
-p 
-	margin 0
-	padding 0
-
-a
-	transition .2s color ease-in
-	text-decoration none
-
+@import "_reset.styl"
+@import "_header.styl"
+@import "_main.styl"
+@import "_footer.styl"
 @import "_media.styl"
