@@ -1,0 +1,23 @@
+{
+  "extends": ["halo-lab"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "jquery": true,
+    "es6": true
+  },
+  "rules": {
+    "quotes": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-underscore-dangle": "off",
+    "no-shadow": "off",
+    "camelcase": "off",
+    "object-curly-newline": "off",
+    "operator-linebreak": "off",
+    "arrow-body-style": ["error", "always"],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+  }
+}
